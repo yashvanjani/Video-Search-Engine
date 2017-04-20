@@ -36,7 +36,7 @@
     </head>
     <body>
 
-        <div class="SearchBar">
+        <!-- <div class="SearchBar">
             <form>
                 <input type="text" placeholder="Search..." required>
                 <button>GO</button>
@@ -47,8 +47,8 @@
         	<form>
 				<img src="  " alt="Mountain View" style="width:1000px;height:500px;"> 
         	</form>
-        </div>		
-        <div class="SearchBox1">
+        </div>	 -->	
+        <!-- <div class="SearchBox1">
         	<form>
         		<img src="  " alt="1" style="width:360px;height:200px;"> 
         	</form>	
@@ -62,6 +62,18 @@
         	<form>
         		<img src="  " alt="3" style="width:360px;height:200px;"> 
         	</form>	
-        </div>
+        </div> -->
+
+
+        <div class="large-8 columns">
+        <form action="/submit_message" method="post">
+          <input type="text" placeholder="Name" name="who">
+          <textarea placeholder="Enter your message here" name="message" cols="50" rows="4"></textarea>
+          <input type="hidden" name="videoID" value=data[0][3]>
+          <input type="submit" value="Submit">
+        </form>
+
+        
+
     </body>
 </HTML>

@@ -130,32 +130,51 @@ def main():
 
 
 
-@app.route('/yash')
-def app2():
-	# input1 = request.form['video']
-	# client = MongoClient()
-	# db = client.test_database
-	# coll = db.test_collection
+# @app.route('/yash')
+# def app2():
+# 	# input1 = request.form['video']
+# 	# client = MongoClient()
+# 	# db = client.test_database
+# 	# coll = db.test_collection
 	
-	# cursor = list(coll.find({'$text':{'$search': str(input1)}}).limit(5))
-	# #print cursor
-	# res = []
-	# for doc in cursor:
-	# 	res.append([doc['videoInfo']['snippet']['thumbnails']['high']['url'],doc['videoInfo']['snippet']['localized']['title'],doc['videoInfo']['snippet']['localized']['description']],)
+# 	# cursor = list(coll.find({'$text':{'$search': str(input1)}}).limit(5))
+# 	# #print cursor
+# 	# res = []
+# 	# for doc in cursor:
+# 	# 	res.append([doc['videoInfo']['snippet']['thumbnails']['high']['url'],doc['videoInfo']['snippet']['localized']['title'],doc['videoInfo']['snippet']['localized']['description']],)
 
-	# video_id = cursor['videoInfo']['id']
+# 	# video_id = cursor['videoInfo']['id']
 
-	cursor = mysql.connection.cursor()
+# 	cursor = mysql.connection.cursor()
 	
-	query_string = "SELECT * FROM student;"
-	cursor.execute(query_string)
+# 	query_string = "SELECT * FROM student;"
+# 	cursor.execute(query_string)
 
-	data=cursor.fetchall()
+# 	data=cursor.fetchall()
 
-	# mysql.close()
+# 	# mysql.close()
 
-	return render_template('select.html',data=data)
-	
+# 	return render_template('select.html',data=data)
+
+@app.route('/submit_message', methods=['POST'])
+def submit_message():
+  	message = {
+  		'videoID': request.form['videoID'],
+    	'body': request.form['message'],
+    	'who': request.form['who'],
+  	}
+  	
+
+ 	conn = mysql.connection
+	cursor1 = conn.cursor()
+	query_string = "INSERT INTO Video_comments (video_id, comment, name) VALUES ('{}', '{}', '{}');".format(message[0],message[1],message[2])
+	cursor1.execute(query_string)
+	# cursor1.close()
+	conn.commit()
+
+	# return render_template('1.html')
+	return redirect("http://127.0.0.1:5000/'{}'".format(message[0]))
+
 if __name__ == '__main__':
 	app.run(debug=True)
 
