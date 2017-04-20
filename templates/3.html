@@ -22,17 +22,17 @@
 {% for row in data %}
 <div class="row">
 
-	<div class="col-md-7">
+	<div class="col-md-1">
 	</div>
 	<div class="col-md-2">
-		<form action="/{{row[3]}}" method="POST">
-  		<input type="image" name="thumbnail" src="{{row[0]}}" style="height: 120px;width: 180px"></center> ><br><br>
-		</form>
+		<img src="{{row[0]}}" style="height: 120px;width: 180px"></center>
 	</div>	
-	<div class="col-md-2">
-		<h4><a href="/{{row[3]}}" method="POST">{{ row[1] }}</a></h4>
+	<div class="col-md-5">
+		<h4>{{ row[1] }}</h4>
+
 		<span class="st">
 		<p>{{row[2]}}</p>	
+		<h4>Likes: {{row[4]}}</h4>
 		</span>
 	</div>	
 
@@ -41,5 +41,7 @@
 	</div>
 </div>
 {% endfor %}
+
+
 </body>
 </html>
