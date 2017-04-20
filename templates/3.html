@@ -18,10 +18,43 @@
 
 
 <body>
-
-{% for row in data %}
 <div class="row">
 
+	<div class="col-md-1">
+	</div>
+	<div class="col-md-2">
+		<img src="{{data[0][0]}}" style="left : 150px;height: 120px;width: 180px"></center>
+	</div>	
+	<div class="col-md-5">
+		<h4>{{ data[0][1] }}</h4>
+
+		<span class="st">
+		<p>{{data[0][2]}}</p>	
+		<h4>Likes: {{data[0][4]}}</h4>
+		</span>
+	</div>	
+
+	{% for row  in data[1:5] %}
+	<div class="col-md-2">
+		<div class="SearchBox1">
+        	<form>
+        		<img src=" {{row[0]}} " alt="1" style="width:180px;height:120px;"> 
+        	</form>	
+        </div>
+	</div>
+	<div class="col-md-2">
+        <h4>{{ row[1] }}</h4>
+        <span class="st">
+			<p>{{row[2]}}</p>	
+			<h4>Likes: {{row[4]}}</h4>
+		</span>
+    </div>    	
+	{% endfor %} 
+</div>
+
+<!-- {% for row in data %} -->
+<!-- <div class="row2"> -->
+<!-- 
 	<div class="col-md-1">
 	</div>
 	<div class="col-md-2">
@@ -40,7 +73,7 @@
 
 	</div>
 </div>
-{% endfor %}
+{% endfor %} -->
 
 
 </body>

@@ -26,9 +26,12 @@ def app1():
 	
 	return render_template('2.html',data=res)	
 
-@app.route('/<video_id>', methods=['POST'])
+@app.route('/<video_id>', methods=['GET','POST'])
 def details(video_id):
-	cursor = list(coll.find({"videoInfo.id": video_id}))  
+	cursor = list(coll.find({"videoInfo.id": video_id})) 
+	# if method=='GET':
+	# 	url1 = "www.youtube.com/watch?v="+str(video_id) 
+	# 	print url1
 	res = []
 	for doc in cursor:
 		res.append([doc['videoInfo']['snippet']['thumbnails']['high']['url'],doc['videoInfo']['snippet']['localized']['title'],doc['videoInfo']['snippet']['localized']['description'],doc['videoInfo']['id'],doc['videoInfo']['statistics']['likeCount']],)
@@ -69,7 +72,7 @@ def details(video_id):
 		res.append([doc['videoInfo']['snippet']['thumbnails']['high']['url'],doc['videoInfo']['snippet']['localized']['title'],doc['videoInfo']['snippet']['localized']['description'],doc['videoInfo']['id'],doc['videoInfo']['statistics']['likeCount']],)
 
 
-	return render_template('3.html',data=res)
+	return render_template('list.html',data=res)
 	
 
 
