@@ -2,6 +2,12 @@
 <HTML>
     <head>
         <title>Video Search Engine</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap/min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <style>
             .SearchBar {
                 position: absolute;
@@ -17,43 +23,205 @@
 				top: 100px;
 				left: 10px;
 			}
-			.SearchBox1{
-				position: absolute;
-				top: 100px;
-				left: 1050px;
-			}
-			.SearchBox2{
-				position: absolute;
-				top: 310px;
-				left: 1050px;
-			}
-			.SearchBox3{
-				position: absolute;
-				top: 520px;
-				left: 1050px;
-			}
+			.col{
+                position: absolute;
+                top: 470px;
+                left: 10px;
+                right: 550px;
+
+            }
+            .SearchBox2{
+                position: absolute;
+                top: 100px;
+                left: 860px;
+            }
+            .heading2{
+                position: relative;
+                top: -105px;
+                left: 190px;
+                width :250px ;
+                height: 20px;
+            }
+            .desc2{
+                position: relative;
+                top: -60px;
+                left: 190px;
+                width: 250px;
+            }
+
+            .SearchBox3{
+                position: absolute;
+                top: 225px;
+                left: 860px;
+            }
+            .heading3{
+                position: relative;
+                top: -105px;
+                left: 190px;
+                width :250px ;
+                height: 20px;
+            }
+            .desc3{
+                position: relative;
+                top: -60px;
+                left: 190px;
+                width: 250px;
+            }
+
+            .SearchBox4{
+                position: absolute;
+                top: 350px;
+                left: 860px;
+            }
+            .heading4{
+                position: relative;
+                top: -105px;
+                left: 190px;
+                width :250px ;
+                height: 20px;
+            }
+            .desc4{
+                position: relative;
+                top: -60px;
+                left: 190px;
+                width: 250px;
+            }
+
+            .SearchBox5{
+                position: absolute;
+                top: 475px;
+                left: 860px;
+            }
+            .heading5{
+                position: relative;
+                top: -105px;
+                left: 190px;
+                width :250px ;
+                height: 20px;
+            }
+            .desc5{
+                position: relative;
+                top: -60px;
+                left: 190px;
+                width: 250px;
+            }
+
+            .SearchBox6{
+                position: absolute;
+                top: 600px;
+                left: 860px;
+            }
+            .heading6{
+                position: relative;
+                top: -105px;
+                left: 190px;
+                width :250px ;
+                height: 20px;
+            }
+            .desc6{
+                position: relative;
+                top: -60px;
+                left: 190px;
+                width: 250px;
+            }
         </style>
     </head>
     <body>
 
-        <!-- <div class="SearchBar">
+         <div class="SearchBar">
             <form>
                 <input type="text" placeholder="Search..." required>
                 <button>GO</button>
             </form>
         </div>
 
-        <div class="VideoThumbnail">
-        	<form>
-				<img src="  " alt="Mountain View" style="width:1000px;height:500px;"> 
-        	</form>
-        </div>	 -->	
-        <!-- <div class="SearchBox1">
-        	<form>
-        		<img src="  " alt="1" style="width:360px;height:200px;"> 
-        	</form>	
-        </div>
+         <div class="VideoThumbnail">
+            <form>
+                <img src="{{data[0][0]}}" style=" height: 450px;width: 800px"></center>
+            </form>
+<!--             <iframe height="450px" width="60%" src="{{data[0][0]}}" name="iframe_a"></iframe>
+            <p><a href={{url1}} target="iframe_a">Play Video</a></p> -->
+            <div class="col">
+                <h4>{{ data[0][1] }}</h4>
+                <span class="st">
+                    <p>{{data[0][2]}}</p>   
+                    <h4>Likes: {{data[0][4]}}</h4>
+                </span>
+            </div>  
+        </div>	
+        
         <div class="SearchBox2">
+        	<form action="/{{data[1][3]}}" method="POST">
+        		<input type="image" name="thumbnail" src=" {{data[1][0]}} " alt="1" style="width:180px;height:100px;"> 
+        	</form>	
+            <div class="col2">
+                <div class="heading2">
+                    <font size="2"><b><a href="/{{data[1][3]}}" method="POST">{{ data[1][1] }}</b></font>
+                </div>
+                <div class="desc2">
+                    <!-- add view count -->
+                </div>       
+            </div> 
+        </div>
+
+        <div class="SearchBox3">
+            <form action="/{{data[2][3]}}" method="POST">
+                <input type="image" name="thumbnail" src=" {{data[2][0]}} " alt="1" style="width:180px;height:100px;"> 
+            </form> 
+            <div class="col3">
+                <div class="heading3">
+                    <font size="2"><b><a href="/{{data[2][3]}}" method="POST">{{ data[2][1] }}</b></font>
+                </div>
+                <div class="desc3">
+                    <!-- add view count -->
+                </div>       
+            </div> 
+        </div>
+        
+
+        <div class="SearchBox4">
+            <form action="/{{data[3][3]}}" method="POST">
+                <input type="image" name="thumbnail"  src=" {{data[3][0]}} " alt="1" style="width:180px;height:100px;"> 
+            </form> 
+            <div class="col4">
+                <div class="heading4">
+                    <font size="2"><b><a href="/{{data[3][3]}}" method="POST">{{ data[3][1] }}</b></font>
+                </div>
+                <div class="desc4">
+                    <!-- add view count -->
+                </div>       
+            </div> 
+        </div>
+
+        <div class="SearchBox5">
+            <form action="/{{data[4][3]}}" method="POST">
+                <input type="image" name="thumbnail"  src=" {{data[4][0]}} " alt="1" style="width:180px;height:100px;"> 
+            </form> 
+            <div class="col5">
+                <div class="heading5">
+                    <font size="2"><b><a href="/{{data[4][3]}}" method="POST">{{ data[4][1] }}</b></font>
+                </div>
+                <div class="desc5">
+                    <!-- add view count -->
+                </div>       
+            </div> 
+        </div>
+        
+
+        <div class="SearchBox6">
+            <form action="/{{data[5][3]}}" method="POST">
+                <input type="image" name="thumbnail"  src=" {{data[5][0]}} " alt="1" style="width:180px;height:100px;"> 
+            </form> 
+            <div class="col6">
+                <div class="heading6">
+                    <font size="2"><b><a href="/{{data[5][3]}}" method="POST">{{ data[5][1] }}</b></font>
+                </div>
+                <div class="desc6">
+                    <!-- add view count -->
+                </div>       
+            </div> 
+        </div>
+        <!-- <div class="SearchBox2">
         	<form>
         		<img src="  " alt="2" style="width:360px;height:200px;"> 
         	</form>	
@@ -64,7 +232,6 @@
         	</form>	
         </div> -->
 
-
         <div class="large-8 columns">
         <form action="/submit_message" method="post">
           <input type="text" placeholder="Name" name="who">
@@ -73,7 +240,40 @@
           <input type="submit" value="Submit">
         </form>
 
-        
-
     </body>
+<SCRIPT>
+$(document).ready(function() {
+    var showChar = 200;
+    var ellipsestext = "";
+    var moretext = "less";
+    var lesstext = "more";
+    $('.more').each(function() {
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar-1, content.length - showChar);
+
+            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".morelink").click(function(){
+        if($(this).hasClass("more")) {
+            $(this).removeClass("more");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("more");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+</SCRIPT>    
 </HTML>

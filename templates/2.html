@@ -6,6 +6,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap/min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<div class="SearchBar">
         <form action="/koppar" method="POST">
@@ -30,10 +31,10 @@
 		</form>
 	</div>	
 	<div class="col-md-2">
-		<h4><a href="/{{row[3]}}" method="POST">{{ row[1] }}</a></h4>
-		<span class="st">
-		<p>{{row[2]}}</p>	
-		</span>
+		<h4><a href="/{{row[3]}}"  >{{ row[1] }}</a></h4>
+		<div class="comment more">
+			{{row[2]}}
+		</div>
 	</div>	
 
 	<div class="col-md-1">
@@ -42,4 +43,39 @@
 </div>
 {% endfor %}
 </body>
+<SCRIPT>
+$(document).ready(function() {
+    var showChar = 200;
+    var ellipsestext = "";
+    var moretext = "less";
+    var lesstext = "more";
+    $('.more').each(function() {
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar-1, content.length - showChar);
+
+            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".morelink").click(function(){
+        if($(this).hasClass("more")) {
+            $(this).removeClass("more");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("more");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+</SCRIPT>
 </html>
