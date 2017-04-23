@@ -8,56 +8,100 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-	<div class="SearchBar">
-        <form action="/koppar" method="POST">
-  			<input type="text" name="video" placeholder="Search"><br><br>
- 			<input type="submit" value="Submit">
-		</form>
-    </div>
+	
+    <style>
+        a {
+            color: #0254EB
+        }
+        a:visited {
+            color: #0254EB
+        }
+        a.morelink {
+            text-decoration:none;
+            outline: none;
+        }
+        .morecontent span {
+            display: none;
+        }
+        .comment {
+            width: 700px;
+            background-color: #f0f0f0;
+            margin: 10px;
+        }
+        .Trending {
+                position: absolute;
+                top: 10px;
+                left: 900px;
+            }
+        .History{
+            position: absolute;
+            top: 10px;
+            left: 1000px;
+        }
+        
+    </style>
 
 </head>
 
 
 <body>
+    <div class="SearchBar">
+        <form action="/koppar" method="POST">
+            <input type="text" name="video" placeholder="Search"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="Trending">
+      <form action="/trending" method="POST">
+        <input type="submit" value="Trending">
+      </form>
+    </div>
+    <div class="History">
+      <form action="/history" method="POST">
+        <input type="submit" value="History">
+      </form>
+    </div>
 
-{% for row in data %}
-<div class="row">
+    {% for row in data %}
+    <div class="row">
 
-	<div class="col-md-7">
-	</div>
-	<div class="col-md-2">
-		<form action="/{{row[3]}}" method="POST">
-  		<input type="image" name="thumbnail" src="{{row[0]}}" style="height: 120px;width: 180px"></center> ><br><br>
-		</form>
-	</div>	
-	<div class="col-md-2">
-		<h4><a href="/{{row[3]}}"  >{{ row[1] }}</a></h4>
-		<div class="comment more">
-			{{row[2]}}
-		</div>
-	</div>	
+    	<div class="col-md-1">
+    	</div>
+    	<div class="col-md-2">
+    		<form action="/{{row[3]}}" method="POST">
+      		<input type="image" name="thumbnail" src="{{row[0]}}" style="height: 120px;width: 180px"></center> ><br><br>
+    		</form>
+    	</div>	
+    	<div class="col-md-6">
+    		<!-- <h4><a href="/{{row[3]}}"  >{{ row[1] }}</a></h4> -->
+            <h4>{{row[1]}}</h4>
+    		<div class="comment more">
+    			{{row[2]}}
+    		</div>
+    	</div>	
 
-	<div class="col-md-1">
+    	<div class="col-md-3">
 
-	</div>
-</div>
-{% endfor %}
+    	</div>
+    </div>
+    {% endfor %}
 </body>
 <SCRIPT>
+
 $(document).ready(function() {
     var showChar = 200;
-    var ellipsestext = "";
-    var moretext = "less";
-    var lesstext = "more";
+    var ellipsestext = "...";
+    var moretext = "more";
+    var lesstext = "less";
     $('.more').each(function() {
         var content = $(this).html();
 
         if(content.length > showChar) {
 
             var c = content.substr(0, showChar);
-            var h = content.substr(showChar-1, content.length - showChar);
+            var h = content.substr(showChar, content.length - showChar);
 
-            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
             $(this).html(html);
         }
@@ -65,11 +109,11 @@ $(document).ready(function() {
     });
 
     $(".morelink").click(function(){
-        if($(this).hasClass("more")) {
-            $(this).removeClass("more");
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
             $(this).html(moretext);
         } else {
-            $(this).addClass("more");
+            $(this).addClass("less");
             $(this).html(lesstext);
         }
         $(this).parent().prev().toggle();

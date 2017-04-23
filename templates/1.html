@@ -3,25 +3,54 @@
     <head>
         <title>Video Search Engine</title>
         <style>
+            .TopText{
+              position: absolute;
+              top: 200px;
+              left: 450px;
+            }
             .SearchBar {
                 position: absolute;
-                top: 35px;
+                top: 300px;
                 left: 250px;
             }
             .SearchBar input {
-     			height: 20px;
-     			width: 750px;
-			}
+     			      height: 20px;
+     			      width: 750px;
+            }
+            .Trending {
+                position: absolute;
+                top: 400px;
+                left: 250px;
+            }
+            .History{
+                position: absolute;
+                top: 400px;
+                left: 350px;
+            }
+
 			
         </style>
     </head>
     <body>
+        <div class ="TopText">
+          <h1> Video Search Engine </h1>
 
+        </div>
         <div class="SearchBar">
          	<form action="/koppar" method="POST">
-  				<input type="text" name="video" placeholder="Search"><br><br>
- 				<input type="submit" value="Submit">
-			</form>
+  				  <input type="text" name="video" placeholder="Search"><br><br>
+ 				    <input type="submit" value="Submit">
+			   </form>
+        </div>
+        <div class="Trending">
+          <form action="/trending" method="POST">
+            <input type="submit" value="Trending">
+          </form>
+        </div>
+        <div class="History">
+          <form action="/history" method="POST">
+            <input type="submit" value="History">
+          </form>
         </div>
        
     </body>
